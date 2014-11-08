@@ -1,0 +1,146 @@
+<template name="signin">
+    <form id="signin" class="sky-form modal-header-close">
+        <div class="row">
+            <span class="fg-hover-blue icon-cancel-2"></span>
+
+            <fieldset>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2 class="fg-white">
+                            {{mf "signin.template.header" "Login"}}
+                        </h2>
+                    </div>
+                    {{#if isNotNod}}
+                    <div class="col-md-6">
+                        <ul class="intro-social-icons">
+                            <li id="login-with-facebook"><a class="he_social ico-facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li id="login-with-twitter"><a class="he_social ico-twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li id="login-with-linkedin"><a class="he_social ico-linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                        </ul>
+                    </div>
+                    {{/if}}
+                </div>
+                <!--<p>{{mf "signup.template.up_and_ready" "You'll be up and running in less than minute"}}</p>-->
+
+                <div class="control-group">
+                    <label class="input">
+                        <i class="ic-append fa fa-envelope-o" ></i>
+                        <input class="input-login btn-primary floatlabel" name="login" type="text" placeholder='{{mf "signin.template.username_str" "Phone or email"}}' required  minlength="2" style="text-transform: lowercase;">
+                    </label>
+
+                    <label class="input">
+                        <i class="ic-append fa fa-key"></i>
+                        <input name="password" type="password" placeholder='{{mf "signup.template.password" "Password"}}' required class="floatlabel">
+                    </label>
+                    {{#if verify_signin}}
+                        {{#AnimateWithVelocity}}
+                            {{#if verify_phone}}
+                            <label class="input" name='verify-phone'>
+                                <span class="large ic-append resend  button-resend bg-darkGreen bg-hover-green">{{mf "signup.template.verification_resend" "Resend"}}<i class="fa fa-envelope-o"></i></span>
+                                <input name="verification" type="text" placeholder='{{mf "signup.template.verification" "Verification code"}}' class="floatlabel">
+                            </label>
+                            {{/if}}
+                        {{/AnimateWithVelocity}}
+                    {{/if}}
+                </div>
+                <div class="additional-links">
+                    {{#if verify_email}}
+                        <label class="fg-white verify-email floatLeft" name='verify-email'>
+                            {{verification_sent}}
+                        </label>
+                    {{/if}}
+                    <label class="floatRight"><a class="forgot fg-white" href="/password">{{mf "signup.template.forgot" "forgot password?"}}</a></label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="row">
+                    <div class="col-md-6">
+                        {{#if verify_signin}}
+                            {{#if verify_email}}
+                                <button class="large resend bg-darkGreen bg-hover-green fg-white bd-white">
+                                    {{mf "signin.template.verification_resend" "Resend"}}<i class="fa fa-envelope-o" style="margin-left: 10px"></i>
+                                </button>
+                            {{else}}
+                                <button type="submit" class="large verify bg-darkGreen bg-hover-green fg-white bd-white">
+                                    {{mf "signin.template.verify_and_sign_in" "Verify and sign in"}}<i class="fa fa-rocket"></i>
+                                </button>
+                            {{/if}}
+                        {{else}}
+                            <button type="submit" class="large signin bg-darkGreen bg-hover-green fg-white bd-white">
+                                {{mf "signin.template.sign_in" "Sign in"}}<i class="fa fa-rocket"></i>
+                            </button>
+                        {{/if}}
+                    </div>
+                    <div class="col-md-6">
+                        <button class="new-account large bg-lightBlue bg-hover-blue fg-white bd-white">
+                            <i class="fa fa-user"></i>{{mf "signin.template.create_account" "New account"}}
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+</template>
+
+<template name="signup_header">
+
+</template>
+
+<template name="signup_select_user_type">
+    <h1>{{mf "signup.template.select_role_h1" "Let's get started!"}}</h1>
+    <h2>{{mf "signup.template.select_role_h2" "First, tell us what you're looking for."}}</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>{{mf "signup.title" "Sign up"}}I need a interpreter</h2>
+            <p>Find, hire, manage, and pay for help, on demand.</p>
+            <button class="new-account large bg-lightBlue bg-hover-blue fg-white bd-white">
+                {{mf "signup.title" "Sign up"}}
+            </button>
+        </div>
+        <div class="col-md-6">
+            <h2>I need a job</h2>
+            <p>Find work, earn money, and grow your career.</p>
+            <button class="new-account large bg-lightBlue bg-hover-blue fg-white bd-white">
+                {{mf "signup.title" "Sign up"}}
+            </button>
+        </div>
+    </div>
+</template>
+
+<template name="signup_form_interpetor">
+
+</template>
+
+<template name="signup_form_speaker">
+</template>
+
+
+<template name="forgotPassword">
+    <div id ="forgotPasswordModal" class="modal-dialog maxWidth340">
+        <div class="modal-content">
+            {{> forgot_password_modal}}
+        </div>
+    </div>
+</template>
+
+<template name="forgot_password_modal">
+    <form id="forgot" class="sky-form modal-header-close">
+        <fieldset style="border-top: 0">
+            <h2 class="fg-lightBlue">PASSWORD RESET
+                <span class="fg-hover-blue icon-cancel-2 on-right floatRight"></span>
+            </h2>
+            <div class="row">
+                <p class="fg-darkBlue">Enter phone or email to reset password</p>
+                <div class="control-group">
+                    <label class="input">
+                        <i class="ic-append fa fa-envelope-o" ></i>
+                        <input class="btn-primary floatlabel" name="remember" type="text" placeholder='{{mf "signin.template.username_str" "Phone or email"}}' required  minlength="2">
+                    </label>
+                </div>
+                <button type="submit" class="large reset bg-lightBlue bg-hover-blue fg-white bd-white floatRight" style="width: 100%;">
+                    {{mf "forgot.template.reset" "Send"}}
+                </button>
+            </div>
+        </fieldset>
+    </form>
+</template>

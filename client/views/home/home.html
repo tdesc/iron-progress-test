@@ -1,0 +1,145 @@
+<template name="home">
+    <div id='home' class="metro">
+        <div class="row">
+            <h1><i class="icon-home"></i>{{mf 'home.template.header' 'Home'}}
+            <span>
+                <button name="new" class="large bg-white bg-hover-grayLighter">
+                    {{mf 'home.template.new_button' 'New conference'}}
+                    <i class="icon-plus-2"></i>
+                </button>
+            </span>
+            </h1>
+        </div>
+        {{>grid}}
+    </div>
+</template>
+
+<template name ="grid">
+    <ul id="og-grid" class="metro og-grid row">
+        {{#each conferences}}
+            {{>listItem}}
+        {{else}}
+            <h2 class="no_conferences">{{mf 'home.template.no_conferences' 'No conferences'}}</h2>
+        {{/each}}
+    </ul>
+</template>
+
+<template name ="listItem">
+    <li class="col-md-4 conference-card" data-id={{_id}}>
+        <a href="{{pathFor 'conference'}}" class="card-wrapper">
+            <div class="inner-card">
+                <div class="card-header">
+                    <h3>{{datetime}}</h3>
+                    {{> conferenceOnline}}
+                </div>
+
+                <div class="row card-content">
+
+                    {{#with owner}}
+                        {{#if isNotOwner}}
+                            <div class="tile floatLeft">
+                                <div class="tile-content CoverImage" data-click="transform"
+                                     style="background-image: url('{{profile.picture}}?size=large')">
+                                </div>
+                            </div>
+                            <div class="nametroduction floatLeft">
+                                <div class="name">{{displayName}}</div>
+                                <div class="introduction">{{owner_type}}</div>
+                            </div>
+                        {{else}}
+                            <div class="nametroduction">
+                                <div class="name">{{displayName}}</div>
+                                <div class="introduction">{{owner_type}}</div>
+                            </div>
+                        {{/if}}
+                    {{/with}}
+
+                </div>
+                <div class="card-footer">
+                    <h2>{{name}}</h2>
+                    <span><button name='details' class="og-details floatRight">Details</button></span>
+                </div>
+            </div>
+        </a>
+    </li>
+</template>
+
+<template name="expandItem">
+    <div class="og-expander" style="opacity:0.5;height: 450px" data-id={{_id}}>
+        <div class="og-expander-inner">
+            <span class="og-close"></span>
+
+            <div class="row">
+                <div class="row margin-bottom10">
+                    <div class="col-md-6">
+                        <h2 class="floatLeft link">{{name}}</h2>
+                        {{> conferenceOnline}}
+                    </div>
+                    <div class="col-md-6">
+                        {{#if canEdit}}
+                            <button type="button" class="large remove danger floatRight">Remove</button>
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="col-md-5">
+                        {{#with owner}}
+                        <div class="tile floatLeft">
+                            <div class="tile-content CoverImage" data-click="transform"
+                                 style="background-image: url('{{profile.picture}}?size=large')">
+                            </div>
+                        </div>
+                        <h2 class="floatLeft link">{{displayName}}</h2>
+                        {{/with}}
+                    </div>
+                    <div class="col-md-7">
+                        <h2 class=" link"><i class="fa fa-calendar"></i>{{start_date}}</h2>
+                        <h2 class=" link"><i class="fa fa-clock-o"></i>{{start_time}}</h2>
+                        <h2 class=" link"><i class="fa fa-users"></i>{{count}} participants</h2>
+                        <button type="button" name='open' href="{{pathFor 'conference'}}" class="large fg-white bg-lightBlue bg-hover-blue">Open</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel recent-panel">
+                        <div class="panel-header">
+                            Participants
+                        </div>
+                        <div class="panel-content">
+                            <div class="scrollbox content recent-content">
+                                <div class="test_participants">
+                                    {{#each participants}}
+                                        {{> participant_tile}}
+                                    {{else}}
+                                        <h2 class="no_items">No participants yet</h2>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="conferenceOnline">
+    {{#if online}}
+        <span class="online fg-darkGreen floatRight"><i class="fa fa-circle"></i>Online</span>
+    {{/if}}
+</template>
+
+<template name="participant_tile">
+    <div class="tile">
+        <div class="tile-content image" data-click="transform">
+            <img style="width: 100%" src="{{profile.picture}}?size=large">
+        </div>
+        {{#if this.status.online}}
+        <div class="tile-status bg-dark bg-darkGreen opacity" style ="top:0; max-height: 29px">
+            <span class="online-status label text-center fg-white">Online</span>
+        </div>
+        {{/if}}
+        <div class="tile-status bg-dark opacity">
+            <span class="label fg-white">{{displayName}}</span>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,513 @@
+/*
+Sticky Footer Solution
+by Steve Hatcher
+http://stever.ca
+http://www.cssstickyfooter.com
+*/
+
+//* {margin:0;padding:0;}
+
+/* must declare 0 margins on everything, also for main layout components use padding, not
+vertical margins (top and bottom) to add spacing, else those margins get added to total height
+and your footer gets pushed down a bit more, creating vertical scroll bars in the browser */
+@import "/client/less/MetroUI/less/variables.lessimport";
+@import "/client/less/MetroUI/less/funcs.lessimport";
+@import "/client/less/MetroUI/less/colors.lessimport";
+
+html, body {height: 100%; background-color: #efeae3;}
+
+@background : #30363e;
+@contentBackground: #f5f7fa;
+@menuWidth: 260px;
+
+body {
+  font-family: "Merriweather";
+  font-size: 16px;
+  font-weight: 300;
+  color: #000;
+  background-color: @background;
+
+  ::control-btn {
+    background: rgba(0, 0, 0, 0)!important;
+  }
+  ::-moz-selection {
+    background: rgba(0, 0, 0, 0)!important;
+  }
+}
+
+//#wrap {
+//  min-height: 100%;overflow-x: hidden;
+//
+//}
+//
+//#main {
+//  overflow-x:hidden;
+//  margin: 0 auto;
+//}  /* must be same height as the footer */
+
+.main {
+  min-height: 100%;overflow: hidden;
+  min-width: 900px;
+}
+
+.row
+{
+  margin: 0;
+}
+
+.menu-top {
+
+  line-height: 58px;
+
+  .top-list {
+    display: inline-block;
+    font-size: 1.25em;
+  }
+
+  .page-title
+  {
+    display: none;
+    width: 100%;
+    color: #f5f5f5;
+    text-align: center;
+    margin-left: -@menuWidth;
+  }
+
+}
+
+.menu-top .profile {
+  display: inline-block;
+  padding: 8px 10px;
+  line-height: 42px;
+}
+.menu-top .profile:hover
+{
+  span
+  {
+    color: @lightBlue;
+  }
+}
+
+
+.menu-side a {
+  display: block;
+  padding: 1.2em 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+
+  i{
+    padding: 0 10px;
+  }
+}
+
+.menu-side a:first-child {
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.spanMenu
+{
+  padding: 1.2em 15px;
+  color: #889ebd;
+}
+
+.menu-side {
+  width: @menuWidth;
+}
+
+/* Menu */
+.menu-wrap {
+  position: absolute;
+  font-weight: 700;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.menu-wrap a {
+  color: white;
+  text-align: left;
+  font-family: @segoeLightFontFamily;
+
+}
+
+.menu-top .top-list a
+{
+  padding: 20px;
+}
+
+.menu-top .top-list a .active{
+
+   background: green;
+}
+
+.menu-wrap a:hover,
+.menu-wrap a:focus {
+  color: @lightBlue;
+}
+.menu-wrap
+{
+  .menu-selector
+  {
+    display: none;
+  }
+
+  .menu-selector
+  {
+    width: 10px;
+    height: 100%;
+    background-color: @darkBlue;
+  }
+}
+
+.menu-wrap
+{
+  width: 100%;
+  a.selected
+  {
+//    color: wheat;
+    color: @lightBlue;
+    background-color: whitesmoke;
+//    border: 1px solid rgb(207, 207, 207);
+    border-style: solid;
+    border-color: #00bfff;
+    border-width: 0 3px 0 0;
+
+    .menu-selector
+    {
+      display: block;
+    }
+  }
+}
+
+.menu-button
+{
+  position: relative;
+  z-index: 10;
+
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+
+  font-size: 28px;
+  color: @darkBlue;
+  border: none;
+  background: white;
+  padding: 5px 10px;
+  margin: 10px 15px;
+}
+
+#menu-icon:hover
+{
+  background: #f5f5f5;
+}
+
+.wrapper
+{
+  min-width: 900px;
+  height: 100%;
+  background-color: @background;
+}
+
+.content
+{
+  background-color: whitesmoke;
+}
+
+.content-wrap
+{
+  background-color: white;
+}
+
+.og-grid
+{
+  background-color: @contentBackground;
+}
+
+
+.menu-wrap.show-menu{
+  opacity: 1;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.show-menu.content-wrap
+{
+  -webkit-transform: translate3d(@menuWidth,60px,0);
+  transform: translate3d(@menuWidth,60px,0);
+}
+
+.media-query
+{
+
+}
+
+.show-menu .content::before {
+  opacity: 1;
+
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+}
+.profile
+{
+  min-width: @menuWidth;
+  h2
+  {
+    color: @lighterBlue;
+  }
+}
+
+@media (min-width: 1025px){
+  .content-wrap.media-query{
+    .menu-button
+    {
+      display: none;
+    }
+
+    -webkit-transform: translate3d(@menuWidth,60px,0);
+    transform: translate3d(@menuWidth,60px,0);
+    height: calc(~"100% - 60px");
+    width: calc(~"100% - 260px");
+  }
+  .menu-wrap.media-query
+  {
+    opacity: 1;
+  }
+
+}
+
+
+@media only screen and (max-width: 1025px) {
+
+  .container {
+    width: 970px!important;
+  }
+
+//  .content-wrap
+//  {
+//    #menu-icon
+//    {
+//      display: none;
+//    }
+//
+//    -webkit-transform: translate3d(@menuWidth,60px,0);
+//    transform: translate3d(@menuWidth,60px,0);
+//    height: calc(~"100% - 60px");
+//    width: calc(~"100% - 260px");//100% - @menuWidth);
+//  }
+//
+//  .show-menu
+//  {
+//    -webkit-transform:translate3d(0, 0, 0);
+//    transform: translate3d(0, 0, 0);
+//  }
+//
+//  .content::before
+//  {
+//    content: normal;
+//    background: none;
+//    -webkit-transform:none;
+//    transform: none;
+//  }
+//
+//  .menu-wrap
+//  {
+//    opacity: 1;
+//  }
+
+}
+
+
+
+.center-tile-img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  min-width:100%;
+  min-height: 100%;
+}
+
+.CoverImage {
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto 1em;
+  max-height: 600px;
+  max-width: 600px;
+}
+
+//.center-tile-img {
+//  width: 120px;
+//  height: 120px;
+//  position: absolute;
+//  left: 50%;
+//  top: 50%;
+//  margin-left: -60px;
+//  margin-top: -60px;
+//}
+
+//input:focus, textarea:focus {
+//  outline: none!important;
+//  border-width: 2px;
+//  border-color: #2da5da;
+//}
+
+//input:focus {
+//  outline: -webkit-focus-ring-color auto 5px;
+//}
+
+
+.metro button:focus {
+  outline: 0;
+  border: none;
+}
+
+.metro button:active {
+  background-color: inherit !important;
+  color: #ffffff !important;
+  border-color: transparent;
+}
+
+textarea.disabled, input.disabled,
+textarea[disabled], input[disabled],
+textarea.disabled:hover, input.disabled:hover,
+textarea[disabled]:hover, input[disabled]:hover,
+select.disabled,select[disabled],select.disabled:hover, select[disabled]:hover,
+button.disabled, button[disabled], button.disabled:hover, button[disabled]:hover {
+  cursor: default;
+  background-image: none;
+//  opacity: 0.65;
+//  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  color: #333!important;
+  background-color: #E6E6E6!important;
+
+  -transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+
+@media (max-width: 1024px) and (min-width: 768px) {
+
+  .main
+  {
+    width: 100%!important;
+
+//    max-height: 718px!important;
+  }
+}
+//
+//#footer {
+//  height: 60px;
+//  max-height: 60px;
+//  margin: -60px auto 0;
+//  background: #999;
+//  overflow: hidden;
+//  z-index: auto;
+//}
+
+.bootbox
+{
+  pointer-events: none!important;
+}
+
+.bootbox .modal-dialog
+{
+  width: auto!important;
+}
+
+.bootbox .modal-content
+{
+  pointer-events: all!important;
+}
+
+.dropdown-toggle:after
+{
+  position: relative!important;
+}
+
+.no-margin
+{
+  margin: 0!important;
+}
+
+.no-margin-top{
+  margin-top: 0!important;
+}
+
+.margin-top5{
+  margin-top: 5px!important;
+}
+
+.margin-top10
+{
+  margin-top: 10px!important;
+}
+
+.margin-top20
+{
+  margin-top: 20px!important;
+}
+
+.margin-bottom10
+{
+  margin-bottom: 10px!important;
+}
+
+.padding-top20
+{
+  padding-top: 20px;
+}
+
+.floatLeft{
+  float: left!important;
+}
+
+.floatRight{
+  float: right!important;
+}
+
+.metro h1.header
+{
+  min-height: 90px;
+  margin: 0;
+  padding: 0;
+  color: #00AADC;
+  text-shadow: 1px 1px 1px lightgray;
+
+  i.icon-arrow-left-3
+  {
+    padding: 20px 0;
+  }
+
+  i{
+    padding: 20px 20px 20px 40px;
+  }
+  .close
+  {
+    font-size: 32px!important;
+    padding: 10px 20px;
+    span
+    {
+      display: block;
+      text-align: center;
+    }
+  }
+}
+
+.no_items
+{
+  text-align: center;
+  min-height: 130px;
+  padding-top: 50px!important;
+  color: dodgerblue!important;
+  text-shadow: 1px 1px 1px rgb(248, 248, 248) !important;
+}
+
+.fa {
+  font-family: FontAwesome !important;
+}

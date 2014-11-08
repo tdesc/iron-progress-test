@@ -1,0 +1,51 @@
+<head>
+  <title></title>
+</head>
+
+<body>
+</body>
+
+<template name="landing_layout">
+
+    {{> yield region='header'}}
+
+    {{> yield}}
+
+</template>
+
+<template name="layout">
+    <div class="wrapper">
+        <div class="menu-wrap {{media_query}}">
+            {{> yield region='header'}}
+        </div>
+        <div class="content-wrap {{media_query}}">
+            <button id="menu-icon" class="menu-button large floatLeft" style={{progress_style}}>&#9776; Menu</button>
+            <div class="content">
+                {{> yield}}
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="verification_warning">
+    <div class="row bg-darkRed" style="width: 100%; margin: 0">
+        <h4 class="warning fg-white floatRight" style="padding-right: 20px">Please verify your account by phone or email. We will never share your contact information.
+            <a class="fg-lighterBlue fg-hover-lightBlue" href="#privacy">Privacy policy</a>
+        </h4>
+    </div>
+</template>
+
+
+<template name="login">
+    <div class="main">
+        <h1>Login...</h1>
+    </div>
+</template>
+
+<template name="notFound">
+  <h3>404 - Not found</h3>
+</template>
+
+<template name="invalid-access">
+  <h3>403 Forbidden - Invalid Access</h3>
+</template>

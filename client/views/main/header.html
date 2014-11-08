@@ -1,0 +1,157 @@
+<template name="header">
+    <nav class="menu-top">
+        <div class="row">
+            <div class="profile metro floatLeft">
+                {{#with loggedUser}}
+                <div class="tile">
+                    <div class="tile-content CoverImage" data-click="transform"
+                         style="background-image: url('{{profile.picture}}?size=large')">
+                        {{#if avatar_uploading}}
+                            <div id="circularG">
+                                <div id="circularG_1" class="circularG">
+                                </div>
+                                <div id="circularG_2" class="circularG">
+                                </div>
+                                <div id="circularG_3" class="circularG">
+                                </div>
+                                <div id="circularG_4" class="circularG">
+                                </div>
+                                <div id="circularG_5" class="circularG">
+                                </div>
+                                <div id="circularG_6" class="circularG">
+                                </div>
+                                <div id="circularG_7" class="circularG">
+                                </div>
+                                <div id="circularG_8" class="circularG">
+                                </div>
+                            </div>
+                        {{/if}}
+                    </div>
+                </div>
+                <h2>{{displayName}}</h2>
+                {{#if myOwnProfile}}
+                    <button name="avatar" class="normal fg-white bg-darkBlue bg-hover-blue">
+                        {{mf 'sidemenu.template.changePhoto' 'Change photo'}}
+                        <i class="fa fa-upload"></i>
+                    </button>
+                {{/if}}
+                {{/with}}
+            </div>
+            <a class ="signout floatRight" href="/signout"><i class="icon-exit"></i>Logout{{> menu_selector}}</a>
+
+            <div class="top-list floatLeft">
+                <a href="#"><i class="fa fa-fw fa-star-o"></i></a>
+                <a href="#"><i class="fa fa-fw fa-bell-o"></i></a>
+                <a href="#"><i class="fa fa-fw fa-envelope-o"></i></a>
+            </div>
+            <div class="page-title">{{title}}</div>
+        </div>
+    </nav>
+    <nav class="menu-side">
+        <a href="/profile"><i class="icon-user-2"></i>{{mf 'sidemenu.template.profile' 'Profile'}}{{> menu_selector}}</a>
+        <a href="/"><i class="icon-home"></i>{{mf 'sidemenu.template.home' 'Home'}}{{> menu_selector}}</a>
+        {{#if isInRole 'moderator'}}
+            <a href="/marketplace"><i class="icon-open"></i>{{mf 'sidemenu.template.marketplace' 'Marketplace'}}{{> menu_selector}}</a>
+        {{/if}}
+        <!--<a href="/addressbook"><i class="icon-address-book"></i>Address book{{> menu_selector}}</a>-->
+    </nav>
+
+</template>
+
+<template name="menu_selector">
+    <!--<i class="fa menu-selector fa-chevron-right floatRight"></i>-->
+</template>
+
+
+<template name="landing_header">
+
+</template>
+<!--<div class="element locale" style="margin-right: 20px">-->
+    <!--<a class="dropdown-toggle" href="#">-->
+        <!--<img src="/lang/{{locale}}.png" alt={{locale}} />-->
+    <!--</a>-->
+
+    <!--<div class="dropdown-menu" data-role="dropdown" data-show='hover'>-->
+        <!--{{> localization}}-->
+    <!--</div>-->
+<!--</div>-->
+
+<template name="logged_header">
+
+         <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navigation-bar logged-header">
+                    {{#if verified}}
+                        <li><a href="/conferences">Conferences</a></li>
+                        {{#if isInRole 'admin'}}
+                           <li><a href="/users">Manage Users</a></li>
+                        {{/if}}
+                        {{#if isInRole 'view-secrets'}}
+                            <li><a href="/secrets">Billing</a></li>
+                        {{/if}}
+                    {{/if}}
+                </ul>
+                <!--<ul class="nav navbar-nav navbar-right">-->
+                    <!--{{#with currentUser}}-->
+                    <!--{{> test_tile_content}}-->
+                    <!--{{/with}}-->
+                <!--</ul>-->
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="menu-profile  dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-user"></i>{{displayName}}<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/profile">{{displayName}}</a></li>
+                            <li class="divider"></li>
+                            <li><a class="signout" href="/signout">Sign out</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+
+</template>
+
+<template name="logged_breadcrumbs">
+{{#if currentUser}}
+<nav class="breadcrumbs">
+    <ul>
+        <li class ="{{active '/'}}"><a href="/">Home</a></li>
+        <li class ="{{active '/conferences'}}"><a href="/conferences">Conferences</a></li>
+        <li class ="{{active '/conference'}}"><a href="#">Room</a></li>
+    </ul>
+</nav>
+{{/if}}
+</template>
+
+<template name="verification_header">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="container" style="width: auto;">
+                <a class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="/"><img src="/img/logo@2x.png" width="30" height="30" alt=""> {{brand}}</a>
+
+                <div class="nav-collapse collapse pull-right">
+
+                    <ul class="nav navbar-nav navbar-right" >
+
+                        <li><a class="signout" href="/signout">Sign out</a></li>
+
+                        <li class="divider-vertical"></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Language<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                {{> lang}}
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,305 @@
+@import "/client/less/MetroUI/less/variables.lessimport";
+@import "/client/less/MetroUI/less/funcs.lessimport";
+@import "/client/less/MetroUI/less/colors.lessimport";
+
+.og-grid li
+{
+
+}
+.og-grid
+{
+  margin: 0;
+  padding: 0 7px;
+  min-height: 620px;
+}
+
+.tile-status
+{
+  .fa-circle
+  {
+    padding: 0 5px;
+  }
+
+  .online-status
+  {
+    margin: 5px!important;
+  }
+}
+
+.no_conferences
+{
+  color: dodgerblue!important;
+  text-shadow: 1px 1px 1px rgb(248, 248, 248) !important;
+
+  margin: 0 auto;
+  position: fixed;
+  top: 50%;
+  left: 45%;
+  height: 620px;
+
+}
+
+#home
+{
+  h1
+  {
+    min-height: 90px;
+    margin: 0;
+    padding: 0;
+    color: #00AADC;
+    text-shadow: 1px 1px 1px lightgray;
+
+    i.icon-home{
+      padding: 20px 20px 20px 40px;
+    }
+  }
+
+  button[name="new"]
+  {
+    margin-left: 20px;
+
+    color: #00AADC!important;
+    border: 1px solid #00ccff;
+    i
+    {
+      padding-left: 10px;
+    }
+  }
+}
+
+.conference-card
+{
+  .row{
+    margin: 0;
+  }
+
+  a:hover
+  {
+    text-decoration: none;
+  }
+
+  position: initial!important;
+
+  margin: 20px 0;
+
+  .card-wrapper
+  {
+//    width: 100%;
+//    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .inner-card {
+    min-width: 280px;
+    border-radius: 4px;
+//    margin: 60px auto 40px auto;
+    display: block;
+    overflow: hidden;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.45);
+    font-family: 'Roboto';
+    color: #444;
+    font-size: 14px;
+    background-color: white;
+    text-decoration: none;
+    max-height: auto;
+    transition: all .15s ease;
+  }
+
+  .card-header
+  {
+    height: 45px;
+    width: 100%;
+//    background-color: @lightBlue;
+    padding-top: 15px;
+
+    h3{
+      margin: 0;
+
+      font-size: 1.2em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+      padding-left: 10px;
+      color: #00AADC;
+    }
+  }
+
+  .card-footer
+  {
+    position: absolute;
+    bottom: 0;
+    height: 80px;
+    width: 100%;
+
+    background-color: @lightBlue;
+
+    h2{
+      margin: 0;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: left;
+      padding: 10px;
+      color: white;
+    }
+    .og-details
+    {
+      padding: 10px 20px;
+      color: rgb(250,244,244);
+      border-color: rgba(250, 244, 244, 0.6);
+      border-top-style: solid;
+      border-left-style: solid;
+      border-width: 1px;
+
+    }
+  }
+
+  .online
+  {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    i
+    {
+      padding: 0 5px;
+    }
+  }
+
+  .card-content
+  {
+    min-height: 200px;
+    margin-bottom: 10px;
+    .tile
+    {
+      margin: 5px;
+    }
+  }
+
+  .nametroduction{
+    margin-top: 2.4em;
+    z-index: 8;
+    padding-left: 10px;
+  }
+  .name{
+    color: dodgerblue;
+    font-weight: 400;
+    font-size: 2em;
+    text-align: center;
+    position: relative;
+    margin-bottom: .65em;
+    &:after{
+      content: '';
+      position: absolute;
+      top: 1.3em;
+      width: 20%;
+      left: 40%;
+      right: 40%;
+      height: 1px;
+      background: #808080;
+    }
+  }
+  .introduction{
+     text-align: center;
+     color: dodgerblue;
+     font-family: 'Old Standard TT', serif;
+     font-style: italic;
+   }
+
+  .shadow-effect:before, .shadow-effect:after
+  {
+    display: block;
+    z-index: -1;
+    position: absolute;
+    content: "";
+    bottom: 15px;
+    left: 10px;
+    width: 50%;
+    top: 80%;
+    max-width:300px;
+    background: #777;
+    -webkit-box-shadow: 0 15px 10px #777;
+    -moz-box-shadow: 0 15px 10px #777;
+    box-shadow: 0 15px 10px #777;
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    transform: rotate(-3deg);
+  }
+
+  .shadow-effect:after
+  {
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -o-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    transform: rotate(3deg);
+    right: 10px;
+    left: auto;
+  }
+}
+
+.og-expander-inner
+{
+  i
+  {
+    padding: 0 5px;
+  }
+}
+
+
+#conferences
+{
+
+
+  .label
+  {
+
+    color: #ffffff!important;
+  }
+
+  .label-info
+  {
+    font-size: 1.4em!important;
+    background: #00AADC!important;
+  }
+
+  .label-success
+  {
+    font-size: 1.4em!important;
+    background:#69C60C!important;
+  }
+
+  .label-offline
+  {
+    font-size: 1.4em!important;
+    background: #808080 !important;
+  }
+
+
+  a.list
+  {
+    margin-left: 60px;
+    width: auto;
+  }
+
+input[type="checkbox"] {
+    display: inline-block;
+    appearance: none;
+    cursor: pointer;
+    margin: 60px 10px 0 0;
+    order: 1;
+    padding-right: 5px;
+    width: 25px;
+    height: 25px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    &:checked {
+      background: #EFEFEF;
+    }
+  }
+}
